@@ -73,11 +73,17 @@ Regular expressions are an advanced option and can be quite dangerous if used in
 
 The regular expression option allows you to write any simple or complex [regular expression](https://en.wikipedia.org/wiki/Regular_expression){:target="_blank"} to match the current website/application URI. All regular expressions are case *insensitive*.
 
-Example:
+Bad example:
 
-- URI regex value: `^https://.*google.com$`
-- Matches: `https://google.com`, `https://sub.google.com`, `https://sub.sub2.google.com`, `https://malicious-site.com?q=google.com`
+- URI regex value: `^https://.*google\.com$`
+- Matches: `https://google.com`, `https://sub.google.com`, `https://sub.sub2.google.com`, `https://malicious-site.com?q=google.com` (probably not what you wanted)
 - Not matches: `http://google.com` (not https), `https://yahoo.com`
+
+Good example:
+
+- URI regex value: `^https://ap\d+\.my\.home/cgi-bin/luci/?$`
+- Matches: `https://ap01.my.home/cgi-bin/luci/`, `https://ap23.my.home/cgi-bin/luci`
+- Not matches: `https://google.com`, `https://ap23.my.home/cgi-bin/luci/admin/system/admin`, `https://ap-test.my.home/cgi-bin/luci`
 
 **Exact**
 
